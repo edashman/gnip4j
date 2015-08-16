@@ -46,7 +46,10 @@ public class Activity implements Serializable {
     private String twitterFilterLevel;
     @JsonProperty(value = "twitter_lang")
     private String twitterLang;
-    
+
+    @JsonProperty("twitter_quoted_status")
+    private Activity quotedTweet;
+
     private Gnip gnip;
     private String verb;
     private Date postedTime;
@@ -452,5 +455,13 @@ public class Activity implements Serializable {
 
     public final void setTarget(final Object target) {
         this.target = target;
+    }
+
+    public Activity getQuotedTweet() {
+        return quotedTweet;
+    }
+
+    public void setQuotedTweet(Activity quotedTweet) {
+        this.quotedTweet = quotedTweet;
     }
 }

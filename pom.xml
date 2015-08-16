@@ -55,15 +55,15 @@
     <url>https://github.com/zaubersoftware/gnip4j/issues</url>
   </issueManagement>
  	<distributionManagement>
-               <repository> 
-                 <id>sonatype-nexus-staging</id> 
-                 <name>Nexus Release Repository</name> 
-                 <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url> 
-               </repository> 
+               <repository>
+                 <id>sonatype-nexus-staging</id>
+                 <name>Nexus Release Repository</name>
+                 <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+               </repository>
 		<snapshotRepository>
-			<id>zauber-code-snapshots</id>
-			<name>Zauber Code Snapshots</name>
-			<url>https://repo1.flowics.com/content/repositories/zauber-code-snapshots</url>
+			<id>thirdparty</id>
+			<name>Brandwatch thirdparty</name>
+			<url>https://nexus.brandwatch.com/content/repositories/snapshots/</url>
 		</snapshotRepository>
 	</distributionManagement>
 
@@ -167,19 +167,19 @@
 	<dependencyManagement>
 	  <dependencies>
             <dependency>
-              <groupId>org.codehaus.jackson</groupId> 
-              <artifactId>jackson-core-asl</artifactId> 
-              <version>${jackson.version}</version> 
+              <groupId>org.codehaus.jackson</groupId>
+              <artifactId>jackson-core-asl</artifactId>
+              <version>${jackson.version}</version>
             </dependency>
             <dependency>
-              <groupId>org.codehaus.jackson</groupId> 
-              <artifactId>jackson-mapper-asl</artifactId> 
-              <version>${jackson.version}</version> 
+              <groupId>org.codehaus.jackson</groupId>
+              <artifactId>jackson-mapper-asl</artifactId>
+              <version>${jackson.version}</version>
             </dependency>
             <dependency>
-              <groupId>org.codehaus.jackson</groupId> 
-              <artifactId>jackson-xc</artifactId> 
-              <version>${jackson.version}</version> 
+              <groupId>org.codehaus.jackson</groupId>
+              <artifactId>jackson-xc</artifactId>
+              <version>${jackson.version}</version>
             </dependency>
 
 	    <!-- Logging -->
