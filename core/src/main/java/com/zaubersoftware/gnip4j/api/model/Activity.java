@@ -50,6 +50,9 @@ public class Activity implements Serializable {
     @JsonProperty("twitter_quoted_status")
     private Activity quotedTweet;
 
+    @JsonProperty("timestampMs")
+    private Date timestamp;
+
     private Gnip gnip;
     private String verb;
     private Date postedTime;
@@ -463,5 +466,13 @@ public class Activity implements Serializable {
 
     public void setQuotedTweet(Activity quotedTweet) {
         this.quotedTweet = quotedTweet;
+    }
+
+    public Date getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(Date timestamp) {
+        this.timestamp = timestamp;
     }
 }
