@@ -66,6 +66,8 @@ public class GeoDeserializer extends StdDeserializer<Geo> {
         final Point ret;
         if(coordinates.isArray()) {
             ret = new Point(coordinates.get(0).getDoubleValue(), coordinates.get(1).getDoubleValue());
+        } else if(coordinates.isObject() && coordinates.has("longitude") && coordinates.has("latitude")) {
+            ret = new Point(coordinates.get("latitude").getDoubleValue(), coordinates.get("longitude").getDoubleValue());
         } else {
             ret = null;
         }

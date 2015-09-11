@@ -38,6 +38,60 @@ public class GeoDeserializerTest {
     private static final ObjectMapper mapper = JsonActivityFeedProcessor.getObjectMapper();
 
     @Test
+    public void testLocationWithObject() throws Exception {
+        String x = "{\n" +
+                "      \"geo\":{\n" +
+                "        \"coordinates\":{\n" +
+                "          \"points\":[\n" +
+                "            {\n" +
+                "              \"longitude\":-75.6168269982745,\n" +
+                "              \"latitude\":4.22862200346462,\n" +
+                "              \"type\":\"Point\"\n" +
+                "            },\n" +
+                "            {\n" +
+                "              \"longitude\":-75.6168269982745,\n" +
+                "              \"latitude\":4.66872399587881,\n" +
+                "              \"type\":\"Point\"\n" +
+                "            },\n" +
+                "            {\n" +
+                "              \"longitude\":-75.0143280016913,\n" +
+                "              \"latitude\":4.66872399587881,\n" +
+                "              \"type\":\"Point\"\n" +
+                "            },\n" +
+                "            {\n" +
+                "              \"longitude\":-75.0143280016913,\n" +
+                "              \"latitude\":4.22862200346462,\n" +
+                "              \"type\":\"Point\"\n" +
+                "            }\n" +
+                "          ],\n" +
+                "          \"type\":\"Polygon\"\n" +
+                "        },\n" +
+                "        \"type\":\"Polygon\"\n" +
+                "      },\n" +
+                "      \"link\":\"https://api.twitter.com/1.1/geo/id/00fe503e330c0489.json\",\n" +
+                "      \"streetAddress\":null,\n" +
+                "      \"countryCode\":null,\n" +
+                "      \"objectType\":\"place\",\n" +
+                "      \"displayName\":\"Ibagué, Tolima\"\n" +
+                "    }";
+
+        final Activity.Location l = JsonActivityFeedProcessor.getObjectMapper().readValue(x, Activity.Location.class);
+
+        LinearRing hole = ((Polygon) l.getGeo().getCoordinates()).getHoles().get(0);
+        assertEquals(hole.getCoordinates().get(0).getLatitude(), 4.22862200346462, 0.00001);
+        assertEquals(hole.getCoordinates().get(0).getLongitude(), -75.6168269982745, 0.00001);
+
+        assertEquals(hole.getCoordinates().get(1).getLatitude(), 4.66872399587881, 0.00001);
+        assertEquals(hole.getCoordinates().get(1).getLongitude(), -75.6168269982745, 0.00001);
+
+        assertEquals(hole.getCoordinates().get(2).getLatitude(), 4.66872399587881, 0.00001);
+        assertEquals(hole.getCoordinates().get(2).getLongitude(), -75.0143280016913, 0.00001);
+
+        assertEquals(hole.getCoordinates().get(3).getLatitude(), 4.22862200346462, 0.00001);
+        assertEquals(hole.getCoordinates().get(3).getLongitude(), -75.0143280016913, 0.00001);
+    }
+
+    @Test
     public void testLocation() throws JsonParseException, JsonMappingException, IOException {
         String x = "{\"twitter_place_type\":\"city\",\"geo\":{\"coordinates\":[[[-58.5317922,-34.674453],[-58.5317922,-34.534177],[-58.353494,-34.534177],[-58.353494,-34.674453]]],\"type\":\"Polygon\"},\"link\":\"https://api.twitter.com/1.1/geo/id/018f1cde6bad9747.json\",\"twitter_country_code\":\"AR\",\"country_code\":\"Argentina\",\"name\":\"Ciudad Autónoma de Buenos Aires\",\"displayName\":\"Ciudad Autónoma de Buenos Aires, Argentina\",\"objectType\":\"place\"}";
         
