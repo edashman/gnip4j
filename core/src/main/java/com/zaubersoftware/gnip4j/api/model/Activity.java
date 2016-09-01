@@ -66,6 +66,11 @@ public class Activity implements Serializable {
     private String title;
     private Object target;
     
+    @JsonProperty(value = "display_text_range")
+    int [] displayTextRange;
+    @JsonProperty(value = "long_object")
+    Object longObject;
+    
     public final InReplyTo getInReplyTo() {
         return inReplyTo;
     }
@@ -200,6 +205,22 @@ public class Activity implements Serializable {
         link = value;
     }
 
+    
+    public void setDisplayTextRange(final int[] displayTextRange) {
+        this.displayTextRange = displayTextRange;
+    }
+    
+    public int[] getDisplayTextRange() {
+        return displayTextRange;
+    }
+    
+    public void setLongObject(final Object longObject) {
+        this.longObject = longObject;
+    }
+    
+    public Object getLongObject() {
+        return longObject;
+    }
     
     /**
      * https://dev.twitter.com/overview/api/places representation for gnip.
